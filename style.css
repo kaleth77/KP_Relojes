@@ -1,0 +1,201 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #000;
+    color: white;
+    text-align: center;
+}
+
+header {
+    background: #111;
+    padding: 30px;
+    border-bottom: 2px solid gold;
+}
+
+header h1 {
+    color: rgb(187, 162, 20);
+    font-size: 50px;
+    margin: 0;
+}
+
+.productos {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 40px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.card {
+    background: #111;
+    border: 2px solid #FFD700;
+    border-radius: 15px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.card img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
+.card h3 {
+    padding: 10px;
+    font-size: 14px;
+}
+
+button {
+    margin-top: 10px;
+    background: gold;
+    color: black;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+button:hover {
+    background: #d4af37;
+}
+
+@media (max-width: 768px) {
+    .productos {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .card img {
+        height: 150px;
+    }
+}
+
+.card a {
+    text-decoration: none;
+    color: white;
+}
+
+.volver {
+    display: inline-block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: gold;
+    font-weight: bold;
+}
+
+.volver:hover {
+    text-decoration: underline;
+}
+
+.precio {
+    display: inline-block;
+    background-color: gold;
+    color: black;
+    font-weight: bold;
+    padding: 8px 15px;
+    border-radius: 8px;
+    text-decoration: none;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.precio:hover {
+    background-color: #d4af37;
+    transform: scale(1.05);
+}
+
+.visor {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.9);
+
+  justify-content: center;
+  align-items: center;
+}
+
+.visor img {
+  max-width: 90%;
+  max-height: 85%;
+  border-radius: 15px;
+}
+
+.visor span {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 30px;
+  color: gold;
+  cursor: pointer;
+}
+
+.card {
+    position: relative;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px gold;
+}
+
+.card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        45deg,
+        rgba(255, 215, 0, 0.2),
+        rgba(212, 175, 55, 0.3)
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.card:hover::after {
+    opacity: 1;
+}
+
+#ventana-carrito {
+  position: fixed;
+  z-index: 9999;
+}
+
+@media (max-width: 768px) {
+  #ventana-carrito {
+    width: 95%;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 120px;
+  }
+}
+
+/* 🔥 ARREGLO DEFINITIVO PARA QUE NO QUEDE ATRÁS */
+#carrito-icono{
+  position: fixed !important;
+  top: 20px;
+  right: 20px;
+  z-index: 9999999 !important;
+}
+
+#ventana-carrito{
+  position: fixed !important;
+  z-index: 9999999 !important;
+}
+
+/* Desactiva transform en móvil para evitar conflicto de capas */
+@media (max-width: 768px){
+  .card:hover{
+    transform: none !important;
+    box-shadow: none !important;
+  }
+}
